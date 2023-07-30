@@ -1,0 +1,24 @@
+version: '3.4'
+services:
+  mariadb:
+    image: mariadb:10
+    ports:
+      - 9700:3306
+    networks:
+      car-net:
+        aliases:
+          - car-mariadb
+    environment:
+      MYSQL_DATABASE: "cardb"
+      MYSQL_USER: "app"
+      MYSQL_PASSWORD: "app9700"
+      MYSQL_ROOT_PASSWORD: "admin9700"
+      TZ: Asiz:Seoul
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+      - --character-set-client-handshake=FALSE
+
+networks:
+  car-net:
+    driver: bridge
